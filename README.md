@@ -31,7 +31,7 @@ ytmp3 https://www.youtube.com/watch?v=VIDEO_ID&t=30s
 - **Homebrew** (only if you don't already have it)
 - **yt-dlp** (YouTube downloader)
 - **ffmpeg** (audio/video conversion)
-- **Download folder:** `~/Music/z-dl/`
+- **Download folder:** `~/Movies/z-dl/`
   - `mp3/` - MP3 audio files
   - `wav/` - WAV audio files
   - `mp4/` - MP4 video files
@@ -42,10 +42,10 @@ ytmp3 https://www.youtube.com/watch?v=VIDEO_ID&t=30s
 
 ## Output locations
 
-All downloads go to `~/Music/z-dl/` organized by format:
-- **MP3:** `~/Music/z-dl/mp3/`
-- **WAV:** `~/Music/z-dl/wav/`
-- **MP4:** `~/Music/z-dl/mp4/`
+All downloads go to `~/Movies/z-dl/` organized by format:
+- **MP3:** `~/Movies/z-dl/mp3/`
+- **WAV:** `~/Movies/z-dl/wav/`
+- **MP4:** `~/Movies/z-dl/mp4/`
 
 ## Troubleshooting
 
@@ -79,7 +79,7 @@ The script downloads the best available MP4 video quality. For smaller files, yo
 ```
 3. (Optional) Remove downloaded files:
 ```bash
-   rm -rf ~/Music/z-dl
+   rm -rf ~/Movies/z-dl
 ```
 
 ## Legal
