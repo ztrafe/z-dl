@@ -1,52 +1,109 @@
 #!/bin/bash
-set -e
 
-echo "z-dl | macOS setup (ytmp3 + ytwav)"
-echo
+# z-dl installer
+# Dead-simple YouTube downloader for macOS
 
-# Homebrew
-if ! command -v brew >/dev/null 2>&1; then
-  echo "Homebrew not found. Installing..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+echo "Installing z-dl..."
+
+# Check if Homebrew is installed
+if ! command -v brew &> /dev/null; then
+    echo "Homebrew not found. Installing Homebrew..."
+#!/bin/bash
+
+# z-dl installer
+# Dead-simple YouTube downloader for macOS
+
+echo "Installing z-dl..."
+
+# Check if Homebrew is installed
+if ! command -v brew &> /dev/null; then
+    echo "Homebrew not found. Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
-  echo "Homebrew already installed"
+    echo "Homebrew already installed ✓"
 fi
 
-echo
-echo "Installing yt-dlp and ffmpeg..."
-brew install yt-dlp ffmpeg
+# Install yt-dlp
+if ! command -v yt-dlp &> /dev/null; then
+    echo "Installing yt-dlp..."
+    brew install yt-dlp
+else
+    echo "yt-dlp already installed ✓"
+fi
 
-MP3_DIR="$HOME/Music/yt-dl"
-WAV_DIR="$HOME/Music/yt-dl-wav"
+# Install ffmpeg
+if ! command -v ffmpeg &> /dev/null; then
+    echo "Installing ffmpeg..."
+    brew install ffmpeg
+else
+    echo "ffmpeg already installed ✓"
+fi
 
-mkdir -p "$MP3_DIR" "$WAV_DIR"
+# Create download directories
+mkdir -p ~/Music/z-dl/mp3
+mkdir -p ~/Music/z-dl/wav
+mkdir -p ~/Music/z-dl/mp4
 
-echo
-echo "Folders created:"
-echo "  MP3: $MP3_DIR"
-echo "  WAV: $WAV_DIR"
-echo
+echo "Created download folders in ~/Music/z-dl/"
 
-ZSHRC="$HOME/.zshrc"
-touch "$ZSHRC"
+# Check if functions already exist in .zshrc
+if grep -q "ytmp3()" ~/.zshrc 2>/dev/null; then
+    echo "z-dl commands already in .zshrc, skipping..."
+else
+    echo "Adding z-dl commands to ~/.zshrc..."
+    
+    # Add MP3 download function
+    cat >> ~/.zshrc << 'EOF'
 
-# Remove old lines (if reinstalling)
-grep -vE '^(alias ytmp3=|alias ytwav=)' "$ZSHRC" > "$ZSHRC.tmp" || true
-mv "$ZSHRC.tmp" "$ZSHRC"
-
-cat << 'EOF' >> "$ZSHRC"
-
-# z-dl | YouTube audio download helpers (no quotes needed)
-alias ytmp3='noglob yt-dlp -x --audio-format mp3 -o "$HOME/Music/yt-dl/%(title)s.%(ext)s"'
-alias ytwav='noglob yt-dlp -x --audio-format wav -o "$HOME/Music/yt-dl-wav/%(title)s.%(ext)s"'
+# z-dl: Download YouTube audio as MP3
+ytmp3() {
+  mkdir -p ~/Music/z-dl/mp3
+  yt-dlp -x --audio-format mp3 \
+    -o "~/Music/z-dl/mp3/%(title)s.%(ext)s" \
+    "$1"
+}
 EOF
 
-echo "Installed ytmp3 and ytwav into ~/.zshrc"
-echo
-echo "Next:"
+    # Add WAV download function
+    cat >> ~/.zshrc << 'EOF'
+
+# z-dl: Download YouTube audio as WAV
+ytwav() {
+  mkdir -p ~/Music/z-dl/wav
+  yt-dlp -x --audio-format wav \
+    -o "~/Music/z-dl/wav/%(title)s.%(ext)s" \
+    "$1"
+}
+EOF
+
+    # Add MP4 download function
+    cat >> ~/.zshrc << 'EOF'
+
+# z-dl: Download YouTube video as MP4
+ytmp4() {
+  mkdir -p ~/Music/z-dl/mp4
+  yt-dlp -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best" \
+    --merge-output-format mp4 \
+    -o "~/Music/z-dl/mp4/%(title)s.%(ext)s" \
+    "$1"
+}
+EOF
+
+    echo "Commands added to .zshrc ✓"
+fi
+
+echo ""
+echo "✓ Installation complete!"
+echo ""
+echo "Run this command to activate:"
 echo "  source ~/.zshrc"
-echo
-echo "Use:"
+echo ""
+echo "Usage:"
 echo "  ytmp3 https://youtu.be/VIDEO_ID"
 echo "  ytwav https://youtu.be/VIDEO_ID"
-
+echo "  ytmp4 https://youtu.be/VIDEO_ID"
+echo ""
+echo "Downloads will be saved to:"
+echo "  ~/Music/z-dl/mp3/"
+echo "  ~/Music/z-dl/wav/"
+echo "  ~/Music/z-dl/mp4/"
