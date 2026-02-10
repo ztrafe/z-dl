@@ -76,6 +76,10 @@ This is expected—WAV is uncompressed audio. Use MP3 for general listening, WAV
 
 Only download content you have the rights to use. Respect copyright and creator rights.
 
+## Coming Soon
+
+- **MP4 video downloads** - Download full videos with `ytmp4` command (v1.1.0)
+
 ## Requirements
 
 - macOS (tested on macOS 10.15+)
