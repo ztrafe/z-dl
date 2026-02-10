@@ -1,20 +1,62 @@
 # z-dl
 
-Simple YouTube audio downloader for macOS.
+Dead-simple YouTube audio downloader for macOS.
 
 Installs two Terminal commands:
+- `ytmp3` → download MP3
+- `ytwav` → download WAV
 
-- `ytmp3 <url>` → downloads MP3 to `~/Music/yt-dl`
-- `ytwav <url>` → downloads WAV to `~/Music/yt-dl-wav`
+No quotes required, even for URLs with `?` or `&`.
 
-No quotes needed, even with URLs that contain `?` and `&`.
+---
 
-## Install
-
-Open Terminal and run:
+## TL;DR
 
 ```sh
 git clone https://github.com/ztrafe/z-dl.git
 cd z-dl
 ./install.sh
+source ~/.zshrc
 
+Use:
+ytmp3 https://youtu.be/VIDEO_ID
+ytwav https://youtu.be/VIDEO_ID
+
+What this installs
+-Homebrew (only if you don’t already have it)
+-yt-dlp
+-ffmpeg
+Two download folders:
+~/Music/yt-dl (MP3)
+~/Music/yt-dl-wav (WAV)
+Two shell commands added to ~/.zshrc:
+ytmp3
+ytwav
+
+Where files go
+MP3: ~/Music/yt-dl
+WAV: ~/Music/yt-dl-wav
+
+Common issues
+
+Command not found
+-Restart Terminal, or run:
+source ~/.zshrc
+
+Permission denied when running install.sh
+chmod +x install.sh
+
+WAV files are large
+This is expected. WAV is uncompressed and intended for DAWs like Logic Pro.
+
+Uninstall
+1. Open ~/.zshrc and delete the ytmp3 and ytwav lines
+2. Optional: uninstall dependencies
+
+brew uninstall yt-dlp ffmpeg
+
+3. Optional: remove downloaded files
+rm -rf ~/Music/yt-dl ~/Music/yt-dl-wav
+
+Notes
+Only download content you have the rights to.
