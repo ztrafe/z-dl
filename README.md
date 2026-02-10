@@ -1,10 +1,11 @@
 # z-dl
 
-Dead-simple YouTube audio downloader for macOS.
+Dead-simple YouTube downloader for macOS.
 
-Installs two Terminal commands:
+Installs three Terminal commands:
 - `ytmp3` → download MP3
 - `ytwav` → download WAV
+- `ytmp4` → download MP4
 
 No quotes required, even for URLs with `?` or `&`.
 
@@ -17,6 +18,7 @@ git clone https://github.com/ztrafe/z-dl.git && cd z-dl && ./install.sh && sourc
 ```bash
 ytmp3 https://youtu.be/VIDEO_ID
 ytwav https://youtu.be/VIDEO_ID
+ytmp4 https://youtu.be/VIDEO_ID
 ```
 
 Works with full URLs, short links, and even URLs with parameters—no quotes needed:
@@ -28,18 +30,22 @@ ytmp3 https://www.youtube.com/watch?v=VIDEO_ID&t=30s
 
 - **Homebrew** (only if you don't already have it)
 - **yt-dlp** (YouTube downloader)
-- **ffmpeg** (audio conversion)
-- **Download folders:**
-  - `~/Music/yt-dl` (MP3)
-  - `~/Music/yt-dl-wav` (WAV)
+- **ffmpeg** (audio/video conversion)
+- **Download folder:** `~/Music/z-dl/`
+  - `mp3/` - MP3 audio files
+  - `wav/` - WAV audio files
+  - `mp4/` - MP4 video files
 - **Shell commands** added to `~/.zshrc`:
   - `ytmp3`
   - `ytwav`
+  - `ytmp4`
 
 ## Output locations
 
-- **MP3:** `~/Music/yt-dl`
-- **WAV:** `~/Music/yt-dl-wav`
+All downloads go to `~/Music/z-dl/` organized by format:
+- **MP3:** `~/Music/z-dl/mp3/`
+- **WAV:** `~/Music/z-dl/wav/`
+- **MP4:** `~/Music/z-dl/mp4/`
 
 ## Troubleshooting
 
@@ -60,25 +66,25 @@ chmod +x install.sh
 
 This is expected—WAV is uncompressed audio. Use MP3 for general listening, WAV for production work in DAWs like Logic Pro or Ableton.
 
+### MP4 quality
+
+The script downloads the best available MP4 video quality. For smaller files, you can modify the command or use online converters.
+
 ## Uninstall
 
-1. Open `~/.zshrc` and delete the `ytmp3` and `ytwav` function definitions
+1. Open `~/.zshrc` and delete the `ytmp3`, `ytwav`, and `ytmp4` function definitions
 2. (Optional) Uninstall dependencies:
 ```bash
    brew uninstall yt-dlp ffmpeg
 ```
 3. (Optional) Remove downloaded files:
 ```bash
-   rm -rf ~/Music/yt-dl ~/Music/yt-dl-wav
+   rm -rf ~/Music/z-dl
 ```
 
 ## Legal
 
 Only download content you have the rights to use. Respect copyright and creator rights.
-
-## Coming Soon
-
-- **MP4 video downloads** - Download full videos with `ytmp4` command (v1.1.0)
 
 ## Requirements
 
