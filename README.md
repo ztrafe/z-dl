@@ -7,23 +7,24 @@ Installs three Terminal commands:
 - `ytwav` → download WAV
 - `ytmp4` → download MP4
 
-No quotes required, even for URLs with `?` or `&`.
-
 ## Install
 ```sh
 git clone https://github.com/ztrafe/z-dl.git && cd z-dl && ./install.sh && source ~/.zshrc
 ```
 
 ## Usage
+
+Use quotes around URLs with special characters (`?` or `&`):
 ```bash
-ytmp3 https://youtu.be/VIDEO_ID
-ytwav https://youtu.be/VIDEO_ID
-ytmp4 https://youtu.be/VIDEO_ID
+ytmp3 'https://youtu.be/VIDEO_ID'
+ytwav 'https://youtu.be/VIDEO_ID'
+ytmp4 'https://youtu.be/VIDEO_ID'
 ```
 
-Works with full URLs, short links, and even URLs with parameters—no quotes needed:
+Examples:
 ```bash
-ytmp3 https://www.youtube.com/watch?v=VIDEO_ID&t=30s
+ytmp3 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+ytmp4 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=30s'
 ```
 
 ## What gets installed
@@ -31,10 +32,10 @@ ytmp3 https://www.youtube.com/watch?v=VIDEO_ID&t=30s
 - **Homebrew** (only if you don't already have it)
 - **yt-dlp** (YouTube downloader)
 - **ffmpeg** (audio/video conversion)
-- **Download folder:** `~/Music/z-dl/`
-  - `mp3/` - MP3 audio files
-  - `wav/` - WAV audio files
-  - `mp4/` - MP4 video files
+- **Download folders:**
+  - `~/Music/z-dl/mp3/` - MP3 audio files
+  - `~/Music/z-dl/wav/` - WAV audio files
+  - `~/Movies/z-dl/mp4/` - MP4 video files
 - **Shell commands** added to `~/.zshrc`:
   - `ytmp3`
   - `ytwav`
@@ -42,10 +43,9 @@ ytmp3 https://www.youtube.com/watch?v=VIDEO_ID&t=30s
 
 ## Output locations
 
-All downloads go to `~/Music/z-dl/` organized by format:
 - **MP3:** `~/Music/z-dl/mp3/`
 - **WAV:** `~/Music/z-dl/wav/`
-- **MP4:** `~/Music/z-dl/mp4/`
+- **MP4:** `~/Movies/z-dl/mp4/`
 
 ## Troubleshooting
 
@@ -79,7 +79,7 @@ The script downloads the best available MP4 video quality. For smaller files, yo
 ```
 3. (Optional) Remove downloaded files:
 ```bash
-   rm -rf ~/Music/z-dl
+   rm -rf ~/Music/z-dl ~/Movies/z-dl
 ```
 
 ## Legal
