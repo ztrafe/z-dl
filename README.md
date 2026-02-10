@@ -8,7 +8,12 @@ Installs two Terminal commands:
 
 No quotes required, even for URLs with `?` or `&`.
 
-## TL;DR (Install Command - Terminal)
+## Install
+```sh
+git clone https://github.com/ztrafe/z-dl.git && cd z-dl && ./install.sh && source ~/.zshrc
+```
+
+## TL;DR
 ```bash
 git clone https://github.com/ztrafe/z-dl.git
 cd z-dl
