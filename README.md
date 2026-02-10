@@ -8,55 +8,65 @@ Installs two Terminal commands:
 
 No quotes required, even for URLs with `?` or `&`.
 
----
-
 ## TL;DR
-
-```sh
+```bash
 git clone https://github.com/ztrafe/z-dl.git
 cd z-dl
 ./install.sh
 source ~/.zshrc
+```
 
-Use:
+**Use:**
+```bash
 ytmp3 https://youtu.be/VIDEO_ID
 ytwav https://youtu.be/VIDEO_ID
+```
 
-What this installs
--Homebrew (only if you don’t already have it)
--yt-dlp
--ffmpeg
-Two download folders:
-~/Music/yt-dl (MP3)
-~/Music/yt-dl-wav (WAV)
-Two shell commands added to ~/.zshrc:
-ytmp3
-ytwav
+## What this installs
 
-Where files go
-MP3: ~/Music/yt-dl
-WAV: ~/Music/yt-dl-wav
+- Homebrew (only if you don't already have it)
+- yt-dlp
+- ffmpeg
+- Two download folders:
+  - `~/Music/yt-dl` (MP3)
+  - `~/Music/yt-dl-wav` (WAV)
+- Two shell commands added to `~/.zshrc`:
+  - `ytmp3`
+  - `ytwav`
 
-Common issues
+## Where files go
 
-Command not found
--Restart Terminal, or run:
-source ~/.zshrc
+- **MP3:** `~/Music/yt-dl`
+- **WAV:** `~/Music/yt-dl-wav`
 
-Permission denied when running install.sh
+## Common issues
+
+**Command not found**
+- Restart Terminal, or run:
+```bash
+  source ~/.zshrc
+```
+
+**Permission denied when running install.sh**
+```bash
 chmod +x install.sh
+```
 
-WAV files are large
-This is expected. WAV is uncompressed and intended for DAWs like Logic Pro.
+**WAV files are large**
+- This is expected. WAV is uncompressed and intended for DAWs like Logic Pro.
 
-Uninstall
-1. Open ~/.zshrc and delete the ytmp3 and ytwav lines
+## Uninstall
+
+1. Open `~/.zshrc` and delete the `ytmp3` and `ytwav` lines
 2. Optional: uninstall dependencies
-
-brew uninstall yt-dlp ffmpeg
-
+```bash
+   brew uninstall yt-dlp ffmpeg
+```
 3. Optional: remove downloaded files
-rm -rf ~/Music/yt-dl ~/Music/yt-dl-wav
+```bash
+   rm -rf ~/Music/yt-dl ~/Music/yt-dl-wav
+```
 
-Notes
+## Notes
+
 Only download content you have the rights to.
