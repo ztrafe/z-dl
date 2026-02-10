@@ -13,65 +13,70 @@ No quotes required, even for URLs with `?` or `&`.
 git clone https://github.com/ztrafe/z-dl.git && cd z-dl && ./install.sh && source ~/.zshrc
 ```
 
-## TL;DR
-```bash
-git clone https://github.com/ztrafe/z-dl.git
-cd z-dl
-./install.sh
-source ~/.zshrc
-```
-
-**Use:**
+## Usage
 ```bash
 ytmp3 https://youtu.be/VIDEO_ID
 ytwav https://youtu.be/VIDEO_ID
 ```
 
-## What this installs
+Works with full URLs, short links, and even URLs with parameters—no quotes needed:
+```bash
+ytmp3 https://www.youtube.com/watch?v=VIDEO_ID&t=30s
+```
 
-- Homebrew (only if you don't already have it)
-- yt-dlp
-- ffmpeg
-- Two download folders:
+## What gets installed
+
+- **Homebrew** (only if you don't already have it)
+- **yt-dlp** (YouTube downloader)
+- **ffmpeg** (audio conversion)
+- **Download folders:**
   - `~/Music/yt-dl` (MP3)
   - `~/Music/yt-dl-wav` (WAV)
-- Two shell commands added to `~/.zshrc`:
+- **Shell commands** added to `~/.zshrc`:
   - `ytmp3`
   - `ytwav`
 
-## Where files go
+## Output locations
 
 - **MP3:** `~/Music/yt-dl`
 - **WAV:** `~/Music/yt-dl-wav`
 
-## Common issues
+## Troubleshooting
 
-**Command not found**
-- Restart Terminal, or run:
+### Command not found
+
+Restart Terminal, or run:
 ```bash
-  source ~/.zshrc
+source ~/.zshrc
 ```
 
-**Permission denied when running install.sh**
+### Permission denied when running install.sh
 ```bash
 chmod +x install.sh
+./install.sh
 ```
 
-**WAV files are large**
-- This is expected. WAV is uncompressed and intended for DAWs like Logic Pro.
+### WAV files are huge
+
+This is expected—WAV is uncompressed audio. Use MP3 for general listening, WAV for production work in DAWs like Logic Pro or Ableton.
 
 ## Uninstall
 
-1. Open `~/.zshrc` and delete the `ytmp3` and `ytwav` lines
-2. Optional: uninstall dependencies
+1. Open `~/.zshrc` and delete the `ytmp3` and `ytwav` function definitions
+2. (Optional) Uninstall dependencies:
 ```bash
    brew uninstall yt-dlp ffmpeg
 ```
-3. Optional: remove downloaded files
+3. (Optional) Remove downloaded files:
 ```bash
    rm -rf ~/Music/yt-dl ~/Music/yt-dl-wav
 ```
 
-## Notes
+## Legal
 
-Only download content you have the rights to.
+Only download content you have the rights to use. Respect copyright and creator rights.
+
+## Requirements
+
+- macOS (tested on macOS 10.15+)
+- Terminal with zsh (default on macOS Catalina and later)
