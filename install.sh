@@ -30,11 +30,11 @@ else
 fi
 
 # Create download directories
-mkdir -p ~/Movies/z-dl/mp3
-mkdir -p ~/Movies/z-dl/wav
+mkdir -p ~/Music/z-dl/mp3
+mkdir -p ~/Music/z-dl/wav
 mkdir -p ~/Movies/z-dl/mp4
 
-echo "Created download folders in ~/Movies/z-dl/"
+echo "Created download folders"
 
 # Check if functions already exist in .zshrc
 if grep -q "ytmp3()" ~/.zshrc 2>/dev/null; then
@@ -42,40 +42,33 @@ if grep -q "ytmp3()" ~/.zshrc 2>/dev/null; then
 else
     echo "Adding z-dl commands to ~/.zshrc..."
     
-    # Add MP3 download function
     cat >> ~/.zshrc << 'EOF'
 
-# z-dl: Download YouTube audio as MP3
+# z-dl | YouTube download helpers
+
+# Download YouTube audio as MP3
 ytmp3() {
-  mkdir -p ~/Movies/z-dl/mp3
+  mkdir -p ~/Music/z-dl/mp3
   yt-dlp -x --audio-format mp3 \
-    -o "~/Movies/z-dl/mp3/%(title)s.%(ext)s" \
-    "$1"
+    -o ~/Music/z-dl/mp3/'%(title)s.%(ext)s' \
+    "$@"
 }
-EOF
 
-    # Add WAV download function
-    cat >> ~/.zshrc << 'EOF'
-
-# z-dl: Download YouTube audio as WAV
+# Download YouTube audio as WAV
 ytwav() {
-  mkdir -p ~/Movies/z-dl/wav
+  mkdir -p ~/Music/z-dl/wav
   yt-dlp -x --audio-format wav \
-    -o "~/Movies/z-dl/wav/%(title)s.%(ext)s" \
-    "$1"
+    -o ~/Music/z-dl/wav/'%(title)s.%(ext)s' \
+    "$@"
 }
-EOF
 
-    # Add MP4 download function
-    cat >> ~/.zshrc << 'EOF'
-
-# z-dl: Download YouTube video as MP4
+# Download YouTube video as MP4
 ytmp4() {
   mkdir -p ~/Movies/z-dl/mp4
-  yt-dlp -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best" \
+  yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' \
     --merge-output-format mp4 \
-    -o "~/Movies/z-dl/mp4/%(title)s.%(ext)s" \
-    "$1"
+    -o ~/Movies/z-dl/mp4/'%(title)s.%(ext)s' \
+    "$@"
 }
 EOF
 
@@ -88,12 +81,12 @@ echo ""
 echo "Run this command to activate:"
 echo "  source ~/.zshrc"
 echo ""
-echo "Usage:"
-echo "  ytmp3 https://youtu.be/VIDEO_ID"
-echo "  ytwav https://youtu.be/VIDEO_ID"
-echo "  ytmp4 https://youtu.be/VIDEO_ID"
+echo "Usage (use quotes around URLs with ? or &):"
+echo "  ytmp3 'https://youtu.be/VIDEO_ID'"
+echo "  ytwav 'https://youtu.be/VIDEO_ID'"
+echo "  ytmp4 'https://youtu.be/VIDEO_ID'"
 echo ""
 echo "Downloads will be saved to:"
-echo "  ~/Movies/z-dl/mp3/"
-echo "  ~/Movies/z-dl/wav/"
+echo "  ~/Music/z-dl/mp3/"
+echo "  ~/Music/z-dl/wav/"
 echo "  ~/Movies/z-dl/mp4/"
