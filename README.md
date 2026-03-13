@@ -9,7 +9,19 @@ Installs three Terminal commands:
 
 No quotes required, even for URLs with `?` or `&`.
 
+## Prerequisites
+
+- macOS 10.15+ with Terminal
+- Git (install with `xcode-select --install` if needed)
+
 ## Install
+
+**First time?** Install Git if you don't have it:
+```sh
+xcode-select --install
+```
+
+Then install z-dl:
 ```sh
 git clone https://github.com/ztrafe/z-dl.git && cd z-dl && ./install.sh && source ~/.zshrc
 ```
