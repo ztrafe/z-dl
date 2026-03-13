@@ -37,7 +37,7 @@ mkdir -p ~/Movies/z-dl/mp4
 echo "Created download folders"
 
 # Check if functions already exist in .zshrc
-if grep -q "ytmp3()" ~/.zshrc 2>/dev/null; then
+if grep -q "ytmp3" ~/.zshrc 2>/dev/null; then
     echo "z-dl commands already in .zshrc, skipping..."
 else
     echo "Adding z-dl commands to ~/.zshrc..."
@@ -46,33 +46,33 @@ else
 
 # z-dl | YouTube download helpers
 
-# Download YouTube audio as MP3
-ytmp3() {
-  setopt localoptions noglob
+# Helper functions
+_ytmp3() {
   mkdir -p ~/Music/z-dl/mp3
   yt-dlp -x --audio-format mp3 \
     -o ~/Music/z-dl/mp3/'%(title)s.%(ext)s' \
     "$@"
 }
 
-# Download YouTube audio as WAV
-ytwav() {
-  setopt localoptions noglob
+_ytwav() {
   mkdir -p ~/Music/z-dl/wav
   yt-dlp -x --audio-format wav \
     -o ~/Music/z-dl/wav/'%(title)s.%(ext)s' \
     "$@"
 }
 
-# Download YouTube video as MP4
-ytmp4() {
-  setopt localoptions noglob
+_ytmp4() {
   mkdir -p ~/Movies/z-dl/mp4
   yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' \
     --merge-output-format mp4 \
     -o ~/Movies/z-dl/mp4/'%(title)s.%(ext)s' \
     "$@"
 }
+
+# Aliases with noglob
+alias ytmp3='noglob _ytmp3'
+alias ytwav='noglob _ytwav'
+alias ytmp4='noglob _ytmp4'
 EOF
 
     echo "Commands added to .zshrc ✓"
@@ -93,3 +93,4 @@ echo "Downloads will be saved to:"
 echo "  ~/Music/z-dl/mp3/"
 echo "  ~/Music/z-dl/wav/"
 echo "  ~/Movies/z-dl/mp4/"
+
