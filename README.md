@@ -7,6 +7,8 @@ Installs three Terminal commands:
 - `ytwav` → download WAV
 - `ytmp4` → download MP4
 
+No quotes required, even for URLs with `?` or `&`.
+
 ## Install
 ```sh
 git clone https://github.com/ztrafe/z-dl.git && cd z-dl && ./install.sh && source ~/.zshrc
@@ -14,17 +16,17 @@ git clone https://github.com/ztrafe/z-dl.git && cd z-dl && ./install.sh && sourc
 
 ## Usage
 
-Use quotes around URLs with special characters (`?` or `&`):
+No quotes needed—paste URLs directly:
 ```bash
-ytmp3 'https://youtu.be/VIDEO_ID'
-ytwav 'https://youtu.be/VIDEO_ID'
-ytmp4 'https://youtu.be/VIDEO_ID'
+ytmp3 https://youtu.be/VIDEO_ID
+ytwav https://youtu.be/VIDEO_ID
+ytmp4 https://youtu.be/VIDEO_ID
 ```
 
-Examples:
+Works with any YouTube URL format:
 ```bash
-ytmp3 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-ytmp4 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=30s'
+ytmp3 https://www.youtube.com/watch?v=dQw4w9WgXcQ
+ytmp4 https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=30s
 ```
 
 ## What gets installed
@@ -90,3 +92,4 @@ Only download content you have the rights to use. Respect copyright and creator 
 
 - macOS (tested on macOS 10.15+)
 - Terminal with zsh (default on macOS Catalina and later)
+

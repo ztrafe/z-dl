@@ -48,6 +48,7 @@ else
 
 # Download YouTube audio as MP3
 ytmp3() {
+  setopt localoptions noglob
   mkdir -p ~/Music/z-dl/mp3
   yt-dlp -x --audio-format mp3 \
     -o ~/Music/z-dl/mp3/'%(title)s.%(ext)s' \
@@ -56,6 +57,7 @@ ytmp3() {
 
 # Download YouTube audio as WAV
 ytwav() {
+  setopt localoptions noglob
   mkdir -p ~/Music/z-dl/wav
   yt-dlp -x --audio-format wav \
     -o ~/Music/z-dl/wav/'%(title)s.%(ext)s' \
@@ -64,6 +66,7 @@ ytwav() {
 
 # Download YouTube video as MP4
 ytmp4() {
+  setopt localoptions noglob
   mkdir -p ~/Movies/z-dl/mp4
   yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' \
     --merge-output-format mp4 \
@@ -81,10 +84,10 @@ echo ""
 echo "Run this command to activate:"
 echo "  source ~/.zshrc"
 echo ""
-echo "Usage (use quotes around URLs with ? or &):"
-echo "  ytmp3 'https://youtu.be/VIDEO_ID'"
-echo "  ytwav 'https://youtu.be/VIDEO_ID'"
-echo "  ytmp4 'https://youtu.be/VIDEO_ID'"
+echo "Usage (no quotes needed):"
+echo "  ytmp3 https://youtu.be/VIDEO_ID"
+echo "  ytwav https://youtu.be/VIDEO_ID"
+echo "  ytmp4 https://youtu.be/VIDEO_ID"
 echo ""
 echo "Downloads will be saved to:"
 echo "  ~/Music/z-dl/mp3/"
